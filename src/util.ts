@@ -62,7 +62,6 @@ export const identifyFunctionProperties = (
       continue;
     }
     const propertyType: string = typeof propertyRef;
-    console.log(property, propertyType);
     if (propertyType === "function") {
       const functionContent = (propertyRef as Function).toString();
       const functionSignature = extractFunctionSignature(functionContent);
