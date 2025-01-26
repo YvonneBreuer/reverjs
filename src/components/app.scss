@@ -1,0 +1,102 @@
+.reverjs-app-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 1rem;
+    font-family: sans-serif;
+    width: calc(100vw - 3rem);
+    max-width: 100%;
+    box-sizing: border-box;
+    z-index: 999999999999;
+}
+.reverjs-app-container:has(.reverjs-header.open) {
+    border-radius: 15px;
+    border: 2px solid black;
+    box-shadow: 2px 5px 15px black;
+}
+.reverjs-header {
+    font-size: 1.6rem;
+    display: inline-block;
+}
+.reverjs-header.open {
+    display: block;
+}
+.reverjs-header.open > .reverjs-header-button {
+    text-align: center;
+    border-radius: 15px 15px 0 0;
+}
+.reverjs-header-button {
+    background-color: #3264a8;
+    border-radius: 15px;
+}
+.reverjs-button {
+    color: white;
+    padding: 0.3rem 0.5rem;
+    cursor: pointer;
+    margin: -1px;
+}
+.reverjs-header-button:hover {
+    background-color: #254b80;
+}
+.reverjs-function-container {
+    display: none;
+}
+.reverjs-header.open ~ .reverjs-function-container {
+    padding: 0.5rem 1rem;
+    display: block;
+    background-color: white;
+    max-height: 85vh;
+    overflow-y: scroll;
+}
+.reverjs-function-name {
+    display: inline-block;
+    background-color: #3e4247;
+    border-radius: 5px;
+}
+.reverjs-function-name:hover {
+    background-color: #2b2d30;
+}
+.reverjs-function-list .open .reverjs-function-name {
+    display: block;
+    text-align: center;
+    border-radius: 5px 5px 0 0;
+}
+.reverjs-function-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: 0;
+    position: relative;
+    margin: 1rem 0;
+    font-size: 1;
+}
+.reverjs-function-list .open {
+    border-radius: 5px;
+    border: 1px solid black;
+    box-shadow: 2px 5px 15px black;
+    margin-bottom: 1rem;
+}
+.reverjs-function-code-container {
+    display: none;
+}
+.reverjs-function-list .open .reverjs-function-code-container {
+    display: block;
+    padding-left: 0.5rem;
+}
+.reverjs-function-code-container {
+    overflow-x: scroll;
+}
+.reverjs-function-code {
+    font-size: 0.9rem;
+    background-color: white;
+}
+.reverjs-stats {
+    display: none;
+}
+.reverjs-header.open ~ .reverjs-stats {
+    display: block;
+    background-color: white;
+    padding: 0.5rem 1rem;
+    font-size: 1.1rem;
+}

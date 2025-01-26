@@ -1,0 +1,35 @@
+{
+  "name": "reverjs",
+  "version": "1.0.0",
+  "description": "Reverse engineering tool for analysis of JavaScript code",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint --config eslint.config.mjs",
+    "build": "webpack --config webpack.config.js"
+  },
+  "author": "Yvonne Breuer",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.11.28",
+    "@types/react": "^19.0.4",
+    "@types/react-dom": "^19.0.2",
+    "@typescript-eslint/eslint-plugin": "^8.19.1",
+    "css-loader": "^6.10.0",
+    "eslint": "^9.18.0",
+    "eslint-plugin-prefer-arrow": "^1.2.3",
+    "eslint-plugin-react": "^7.37.3",
+    "globals": "^15.14.0",
+    "sass": "^1.72.0",
+    "sass-loader": "^14.1.1",
+    "style-loader": "^3.3.4",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.4.2",
+    "typescript-eslint": "^8.19.1",
+    "webpack": "^5.90.3",
+    "webpack-cli": "^6.0.1"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
+}
