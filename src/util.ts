@@ -8,6 +8,7 @@ export const detectCustomProperties = (): Array<string> => {
   const iframe = document.createElement("iframe");
   iframe.style.display = "none";
   document.body.appendChild(iframe);
+
   // get the current list of properties on window
   const currentWindow = Object.getOwnPropertyNames(window);
   // filter the list against the properties that exist in the clean window
@@ -49,11 +50,12 @@ export const identifyFunctionProperties = (
   properties: Array<string>,
   accessibility: Array<ObjectContainer>
 ) => {
-  for (let i = 0; i < properties.length; i++) {
-    const property = properties[i];
+  for (const property of properties) {
     if (["0", "NotifyPaintEvent", "__awaiter"].includes(property)) continue;
+
     const objectRef: object = accessibility[accessibility.length - 1].object;
     let propertyRef;
+
     // some properties might not be accessible
     try {
       propertyRef = getProperty(objectRef, property as never);
@@ -61,28 +63,34 @@ export const identifyFunctionProperties = (
       console.log((e as Error).message);
       continue;
     }
+
     const propertyType: string = typeof propertyRef;
+
     if (propertyType === "function") {
       const functionContent = (propertyRef as Function).toString();
       const functionSignature = extractFunctionSignature(functionContent);
-      const funcString: string = (propertyRef as Function).toString();
+      const funcString: string = functionContent;
+
       if (!funcString.includes("[native code]")) {
         const container: FunctionContainer = {
           name: property,
           signature: functionSignature,
           ref: propertyRef,
-          accessibility: accessibility,
+          accessibility: [...accessibility], // Clone accessibility array
         };
         functions.push(container);
       }
     } else if (propertyType === "object") {
       const result = objects.find((item) => item.object === propertyRef);
       if (result != undefined || propertyRef === null) continue;
-      const accessibilityClone = Object.assign([], accessibility);
+
       const newObject = { name: property, object: propertyRef };
       objects.push(newObject);
-      accessibilityClone.push(newObject);
-      if (accessibility.length > recursionLevel) continue;
+
+      const accessibilityClone = [...accessibility, newObject]; // Clone and add new object
+
+      if (accessibilityClone.length > recursionLevel) continue;
+
       identifyFunctionProperties(
         functions,
         objects,
